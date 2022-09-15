@@ -1,0 +1,21 @@
+# Xmake cache
+.xmake/
+build/
+
+# MacOS Cache
+.DS_Store
+
+# Cmake Cache
+cmake-build-debug/
+
+# Compile_commands
+compile_commands.json
+
+# Generate CMakelists.txt
+CMakeLists.txt
+
+# Generate VisualStudio Project(DEBUG)
+vsxmake2019/
+
+# idea info
+.idea/
