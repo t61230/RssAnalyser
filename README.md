@@ -22,4 +22,5 @@ RssAnalyser使用[TinyXML-2](https://github.com/leethomason/tinyxml2) 从RSS文�
 
 构建对象:
 
-一个静态库(LibRssAnalyser)、一个可执行文件(RssAnalyser);
+静态库(LibRssAnalyser)、可执行文件(RssAnalyser)、TinyXML2演示程序(Tinyxml2Demo);
+
