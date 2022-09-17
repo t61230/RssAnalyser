@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file    tinyxml2demo.cpp
  * @ingroup RssAnalyser
  * @brief   演示tinyxml2的使用
@@ -11,8 +11,20 @@
 #include "librssanalyser.h"
 
 using namespace tinyxml2;
+using namespace std;
 
 int main()
 {
+    const char *const DOC_FILE = "mikan.rss";
+    XMLDocument doc;
+    const XMLElement * rootEle;             //一个XML文档只有一个根节点
+
+    if(doc.LoadFile(DOC_FILE) == XML_SUCCESS) {
+        cout << "Open File Succeed！" << endl;
+        /*获取XML根节点*/
+        rootEle = doc.RootElement();
+        if(rootEle != nullptr)              //正常的XML文档会有根节点
+            cout << "Get RootElement Succeed！" << endl;
+    }
     return 0;
 }

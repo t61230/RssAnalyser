@@ -35,3 +35,6 @@ target("Tinyxml2Demo")
     add_packages("tinyxml2")
     add_files("test/tinyxml2demo.cpp")
 
+
+
+
