@@ -15,15 +15,15 @@ using namespace std;
 
 int main()
 {
-    const char *const DOC_FILE = "mikan.rss";
+    const char *const DOC_FILE = "mikan.rss";//文件名mikan.rss
     XMLDocument doc;
     const XMLElement * rootEle;             //一个XML文档只有一个根节点
 
     if(doc.LoadFile(DOC_FILE) == XML_SUCCESS) {
         cout << "Open File Succeed！" << endl;
         /*获取XML根节点*/
-        rootEle = doc.RootElement();
-        if(rootEle != nullptr)              //正常的XML文档会有根节点
+        rootEle = doc.RootElement();        //有获得空指针的风险
+        if(rootEle != nullptr)              //正常的XML文档会有根节点,注意C++11中NULL和nullptr不一样
             cout << "Get RootElement Succeed！" << endl;
     }
     return 0;
