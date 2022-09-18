@@ -1,7 +1,7 @@
 /**
  * @file    rssanalyser.cpp
  * @ingroup RssAnalyser
- * @brief   通过命令使用librssanalyser工具类
+ * @brief   通过命令调用librssanalyser工具类,将结果输出至文件
  *
  * Original code by L2493 (gitee.com/dove-L2493)
  *
