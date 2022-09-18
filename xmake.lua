@@ -23,17 +23,24 @@ target("LibRssAnalyser")
     add_files("src/librssanalyser.cpp")
 
 -- 可执行程序(RssAnalyser)
---target("RssAnalyser")
---    set_kind("binary")
---    add_packages("tinyxml2")
---    add_deps("LibRssAnalyser")
---    add_files("test/rssanalyser.cpp")
+target("RssAnalyser")
+    set_kind("binary")
+    add_packages("tinyxml2")
+    add_deps("LibRssAnalyser")
+    add_files("src/rssanalyser.cpp")
 
 -- 文章的演示程序(Tinyxml2Demo)
 target("Tinyxml2Demo")
     set_kind("binary")
     add_packages("tinyxml2")
     add_files("test/tinyxml2demo.cpp")
+
+-- 静态库测试程序(LibRssAnalyserDemo)
+target("LibRssAnalyserDemo")
+    set_kind("binary")
+    add_deps("LibRssAnalyser")
+    add_packages("tinyxml2")    --导入头文件tinyxml2.h
+    add_files("test/librssanalyserdemo.cpp")
 
 
 

@@ -16,6 +16,7 @@ CMakeLists.txt
 
 # Generate VisualStudio Project(DEBUG)
 vsxmake2019/
+vsxmake2022/
 
 # idea info
 .idea/

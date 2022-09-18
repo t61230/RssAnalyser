@@ -28,7 +28,7 @@ int main()
     eleChannel = LibRssAnalyser::readFromFile("mikan.rss");
 
     /*向文件中写入Channel包含的内容*/
-    file << "ChannelName:" << eleChannel.title << endl
+    file << "ChannelTitle:" << eleChannel.title << endl
          << "ChannelLink:" << eleChannel.link << endl
          << "========" << endl;
     for_each(eleChannel.vecItem.begin(), eleChannel.vecItem.end(), outItem);

@@ -8,7 +8,7 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-#include "librssanalyser.h"
+#include <librssanalyser.h>
 
 using namespace tinyxml2;
 using namespace std;
