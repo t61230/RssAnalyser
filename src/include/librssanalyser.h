@@ -43,7 +43,7 @@ namespace librssanalyser
         * @brief 初始化LibRssAnalyser工具类
         * @return LibRssAnalyser类的静态引用对象
         */
-        static std::shared_ptr<LibRssAnalyser> init();
+        static LibRssAnalyser * init();
 
         /**
         * @brief 从文件中读取RSS文档
@@ -51,7 +51,11 @@ namespace librssanalyser
         * @return <Channel>元素包含的内容
         * @throws tinyxml2::XMLError
         */
-        EleChannel readFromFile(const char* xmlFile) const;
+         static EleChannel readFromFile(const char* xmlFile);
+
+        ~LibRssAnalyser() = default;
+
+        LibRssAnalyser() = default;
 
     protected:
         /**.
@@ -61,7 +65,7 @@ namespace librssanalyser
          *
          * 注意：在传入参数前需要进行空指针检查
          */
-        EleChannel getChannelInfo(const tinyxml2::XMLElement * rootEle) const;
+        static EleChannel getChannelInfo(const tinyxml2::XMLElement * rootEle) ;
 
         /**.
         * @brief 从<item>元素中获取信息
@@ -70,13 +74,13 @@ namespace librssanalyser
         *
         * 注意：在传入参数前需要进行空指针检查
         */
-        EleItem getItemInfo(const tinyxml2::XMLElement * itemEle) const;
+        static EleItem getItemInfo(const tinyxml2::XMLElement * itemEle);
+
 
     private:
-        LibRssAnalyser() = default;
-        ~LibRssAnalyser() = default;
+        static LibRssAnalyser* libRssAnalyser;
 
-        struct MakeSharedEnabler;
+        EleChannel getChannelInfo(const tinyxml2::XMLElement **rootEle);
     };
 }
 

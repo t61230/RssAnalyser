@@ -12,21 +12,17 @@
 using namespace librssanalyser;
 using namespace tinyxml2;
 
-/**
- * make_shared不能访问私有构造方法
- * 这里采用友元解决
- *
- * @line https://stackoverflow.com/questions/8147027
- */
-struct LibRssAnalyser::MakeSharedEnabler:public LibRssAnalyser{
-    MakeSharedEnabler() : LibRssAnalyser(){}
-};
+/*静态变量不属于某个特定方法需要在此初始化 Error：Link2019*/
+LibRssAnalyser* LibRssAnalyser::libRssAnalyser;
 
-std::shared_ptr<LibRssAnalyser> LibRssAnalyser::init() {
-    return std::make_shared<MakeSharedEnabler>();
+/*以单例模式初始化*/
+LibRssAnalyser* LibRssAnalyser::init() {
+    if(libRssAnalyser == nullptr)
+        libRssAnalyser = new LibRssAnalyser();
+    return libRssAnalyser;
 }
 
-EleChannel LibRssAnalyser::readFromFile(const char *xmlFile) const{
+EleChannel LibRssAnalyser::readFromFile(const char *xmlFile) {
     XMLDocument doc;
     const XMLElement * rootEle;
     EleChannel eleChannel;
@@ -41,7 +37,7 @@ EleChannel LibRssAnalyser::readFromFile(const char *xmlFile) const{
     return eleChannel;
 }
 
-EleChannel LibRssAnalyser::getChannelInfo(const tinyxml2::XMLElement * rootEle) const {
+EleChannel LibRssAnalyser::getChannelInfo(const tinyxml2::XMLElement * rootEle){
     EleChannel eleChannel;
     const XMLElement * channelEle;
     const XMLElement * tempEle;
@@ -51,12 +47,12 @@ EleChannel LibRssAnalyser::getChannelInfo(const tinyxml2::XMLElement * rootEle) 
         /*查找title元素，读取文本(text)*/
         tempEle = channelEle->FirstChildElement("title");   //此时tempEle <XMLElement>指向title元素
         if(tempEle != nullptr)
-            eleChannel.title = channelEle->GetText();
+            eleChannel.title = tempEle->GetText();
 
         /*查找link元素，读取文本(text)*/
         tempEle = channelEle->FirstChildElement("link");
         if(tempEle != nullptr)
-            eleChannel.link = channelEle->GetText();
+            eleChannel.link = tempEle->GetText();
 
         /*循环查找item元素，传入getItemInfo()方法获取信息*/
         tempEle = channelEle->FirstChildElement("item");
@@ -70,7 +66,7 @@ EleChannel LibRssAnalyser::getChannelInfo(const tinyxml2::XMLElement * rootEle) 
     return eleChannel;
 }
 
-EleItem LibRssAnalyser::getItemInfo(const tinyxml2::XMLElement * itemEle) const{
+EleItem LibRssAnalyser::getItemInfo(const tinyxml2::XMLElement * itemEle) {
     EleItem itemInfo;
     const XMLElement * tempEle;
 
@@ -91,3 +87,5 @@ EleItem LibRssAnalyser::getItemInfo(const tinyxml2::XMLElement * itemEle) const{
 
     return itemInfo;
 }
+
+
