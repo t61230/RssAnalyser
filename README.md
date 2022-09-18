@@ -30,6 +30,8 @@ RssAnalyser使用[TinyXML-2](https://github.com/leethomason/tinyxml2) 从RSS文�
 ```
 --构建命令--
 xmake build
+--windows(x86)--
+xmake f -y -p windows -a x86 -m release
 ```
 
 构建完成后文件位于/build目录下;
